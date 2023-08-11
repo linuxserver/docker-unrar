@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.18 as alpine-3.18-buildstage
+FROM ghcr.io/linuxserver/baseimage-alpine:3.18 as alpine-buildstage
 
 # set version label
 ARG UNRAR_VERSION=6.2.10
@@ -13,11 +13,12 @@ RUN \
   mkdir /tmp/unrar && \
   curl -o \
     /tmp/unrar.tar.gz -L \
-    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \  
+    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \
   tar xf \
     /tmp/unrar.tar.gz -C \
     /tmp/unrar --strip-components=1 && \
   cd /tmp/unrar && \
+  sed -i 's|LDFLAGS=-pthread|LDFLAGS=-pthread -static|' makefile && \
   make && \
   install -v -m755 unrar /usr/bin && \
   echo "**** cleanup ****" && \
@@ -28,63 +29,7 @@ RUN \
     /tmp/*
 
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.17 as alpine-3.17-buildstage
-
-# set version label
-ARG UNRAR_VERSION=6.2.10
-
-RUN \
-  echo "**** install build dependencies ****" && \
-  apk add --no-cache --virtual=build-dependencies \
-    build-base && \
-  echo "**** install unrar from source ****" && \
-  mkdir /tmp/unrar && \
-  curl -o \
-    /tmp/unrar.tar.gz -L \
-    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \  
-  tar xf \
-    /tmp/unrar.tar.gz -C \
-    /tmp/unrar --strip-components=1 && \
-  cd /tmp/unrar && \
-  make && \
-  install -v -m755 unrar /usr/bin && \
-  echo "**** cleanup ****" && \
-  apk del --purge \
-    build-dependencies && \
-  rm -rf \
-    /root/.cache \
-    /tmp/*
-
-
-FROM ghcr.io/linuxserver/baseimage-alpine:3.16 as alpine-3.16-buildstage
-
-# set version label
-ARG UNRAR_VERSION=6.2.10
-
-RUN \
-  echo "**** install build dependencies ****" && \
-  apk add --no-cache --virtual=build-dependencies \
-    build-base && \
-  echo "**** install unrar from source ****" && \
-  mkdir /tmp/unrar && \
-  curl -o \
-    /tmp/unrar.tar.gz -L \
-    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \  
-  tar xf \
-    /tmp/unrar.tar.gz -C \
-    /tmp/unrar --strip-components=1 && \
-  cd /tmp/unrar && \
-  make && \
-  install -v -m755 unrar /usr/bin && \
-  echo "**** cleanup ****" && \
-  apk del --purge \
-    build-dependencies && \
-  rm -rf \
-    /root/.cache \
-    /tmp/*
-
-
-FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy as ubuntu-jammy-buildstage
+FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy as ubuntu-buildstage
 
 # set version label
 ARG UNRAR_VERSION=6.2.10
@@ -103,6 +48,7 @@ RUN \
     /tmp/unrar.tar.gz -C \
     /tmp/unrar --strip-components=1 && \
   cd /tmp/unrar && \
+  sed -i 's|LDFLAGS=-pthread|LDFLAGS=-pthread -static|' makefile && \
   make && \
   install -v -m755 unrar /usr/bin && \
   echo "**** cleanup ****" && \
@@ -116,38 +62,6 @@ RUN \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
-
-FROM ghcr.io/linuxserver/baseimage-ubuntu:focal as ubuntu-focal-buildstage
-
-# set version label
-ARG UNRAR_VERSION=6.2.10
-
-RUN \
-  echo "**** install build dependencies ****" && \
-  apt-get update && \
-  apt-get install -y --no-install-recommends \
-    build-essential && \
-  echo "**** install unrar from source ****" && \
-  mkdir /tmp/unrar && \
-  curl -o \
-    /tmp/unrar.tar.gz -L \
-    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \  
-  tar xf \
-    /tmp/unrar.tar.gz -C \
-    /tmp/unrar --strip-components=1 && \
-  cd /tmp/unrar && \
-  make && \
-  install -v -m755 unrar /usr/bin && \
-  echo "**** cleanup ****" && \
-  apt-get remove -y \
-    build-essential && \
-  apt-get -y autoremove && \
-  apt-get clean && \
-  rm -rf \
-    /root/.cache \
-    /tmp/* \
-    /var/lib/apt/lists/* \
-    /var/tmp/*
 
 # Storage layer consumed downstream
 FROM scratch
@@ -159,8 +73,5 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="aptalca"
 
 # Add files from buildstage
-COPY --from=alpine-3.18-buildstage /usr/bin/unrar /usr/bin/unrar-alpine-3.18
-COPY --from=alpine-3.17-buildstage /usr/bin/unrar /usr/bin/unrar-alpine-3.17
-COPY --from=alpine-3.16-buildstage /usr/bin/unrar /usr/bin/unrar-alpine-3.16
-COPY --from=ubuntu-jammy-buildstage /usr/bin/unrar /usr/bin/unrar-ubuntu-jammy
-COPY --from=ubuntu-focal-buildstage /usr/bin/unrar /usr/bin/unrar-ubuntu-focal
+COPY --from=alpine-buildstage /usr/bin/unrar /usr/bin/unrar-alpine
+COPY --from=ubuntu-buildstage /usr/bin/unrar /usr/bin/unrar-ubuntu
