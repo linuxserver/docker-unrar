@@ -38,7 +38,8 @@ RUN \
   echo "**** install build dependencies ****" && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
-    build-essential && \
+    g++ \
+    make && \
   echo "**** install unrar from source ****" && \
   mkdir /tmp/unrar && \
   curl -o \
@@ -53,7 +54,8 @@ RUN \
   install -v -m755 unrar /usr/bin && \
   echo "**** cleanup ****" && \
   apt-get remove -y \
-    build-essential && \
+    g++ \
+    make && \
   apt-get -y autoremove && \
   apt-get clean && \
   rm -rf \
