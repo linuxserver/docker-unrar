@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.18 as alpine-buildstage
+FROM ghcr.io/linuxserver/baseimage-alpine:3.19 as alpine-buildstage
 
 # set version label
-ARG UNRAR_VERSION=6.2.10
+ARG UNRAR_VERSION=6.2.12
 
 RUN \
   echo "**** install build dependencies ****" && \
@@ -32,7 +32,7 @@ RUN \
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy as ubuntu-buildstage
 
 # set version label
-ARG UNRAR_VERSION=6.2.10
+ARG UNRAR_VERSION=6.2.12
 
 RUN \
   echo "**** install build dependencies ****" && \
@@ -44,7 +44,7 @@ RUN \
   mkdir /tmp/unrar && \
   curl -o \
     /tmp/unrar.tar.gz -L \
-    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \  
+    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \
   tar xf \
     /tmp/unrar.tar.gz -C \
     /tmp/unrar --strip-components=1 && \
