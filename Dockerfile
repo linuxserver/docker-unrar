@@ -3,7 +3,7 @@
 FROM ghcr.io/linuxserver/baseimage-alpine:3.19 as alpine-buildstage
 
 # set version label
-ARG UNRAR_VERSION=6.2.12
+ARG UNRAR_VERSION=7.0.7
 
 RUN \
   echo "**** install build dependencies ****" && \
@@ -32,7 +32,7 @@ RUN \
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy as ubuntu-buildstage
 
 # set version label
-ARG UNRAR_VERSION=6.2.12
+ARG UNRAR_VERSION=7.0.7
 
 RUN \
   echo "**** install build dependencies ****" && \

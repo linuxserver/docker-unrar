@@ -7,7 +7,7 @@ jobs:
   external-trigger-main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.1.0
+      - uses: actions/checkout@v4.1.1
 
       - name: External Trigger
         if: github.ref == 'refs/heads/main'
@@ -20,7 +20,7 @@ jobs:
           echo "**** External trigger running off of main branch. To disable this trigger, set a Github secret named \"PAUSE_EXTERNAL_TRIGGER_UNRAR_MAIN\". ****"
           echo "External trigger running off of main branch. To disable this trigger, set a Github secret named \`PAUSE_EXTERNAL_TRIGGER_UNRAR_MAIN\`" >> $GITHUB_STEP_SUMMARY
           echo "**** Retrieving external version ****"
-          EXT_RELEASE=$(echo 6.2.12)
+          EXT_RELEASE=$(echo 7.0.7)
           if [ -z "${EXT_RELEASE}" ] || [ "${EXT_RELEASE}" == "null" ]; then
             echo "**** Can't retrieve external version, exiting ****"
             FAILURE_REASON="Can't retrieve external version for unrar branch main"

@@ -48,5 +48,6 @@ The currently included binaries are as follows:
 
 ## Versions
 
+* **29.02.24:** - Bump to 7.0.7.
 * **07.01.24:** - Bump to 6.2.12.
 * **11.08.23:** - Initial release.
