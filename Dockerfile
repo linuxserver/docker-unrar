@@ -19,6 +19,7 @@ RUN \
     /tmp/unrar --strip-components=1 && \
   cd /tmp/unrar && \
   sed -i 's|LDFLAGS=-pthread|LDFLAGS=-pthread -static|' makefile && \
+  sed -i 's|CXXFLAGS=-march=native|CXXFLAGS=-march=x86-64-v2|' makefile && \
   make && \
   install -v -m755 unrar /usr/bin && \
   echo "**** cleanup ****" && \
@@ -50,6 +51,7 @@ RUN \
     /tmp/unrar --strip-components=1 && \
   cd /tmp/unrar && \
   sed -i 's|LDFLAGS=-pthread|LDFLAGS=-pthread -static|' makefile && \
+  sed -i 's|CXXFLAGS=-march=native|CXXFLAGS=-march=x86-64-v2|' makefile && \
   make && \
   install -v -m755 unrar /usr/bin && \
   echo "**** cleanup ****" && \
