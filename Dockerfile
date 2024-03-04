@@ -5,6 +5,8 @@ FROM ghcr.io/linuxserver/baseimage-alpine:3.19 as alpine-buildstage
 # set version label
 ARG UNRAR_VERSION=7.0.7
 
+COPY data.rar /data.rar
+
 RUN \
   echo "**** install build dependencies ****" && \
   apk add --no-cache --virtual=build-dependencies \
@@ -22,6 +24,9 @@ RUN \
   sed -i 's|CXXFLAGS=-march=native|CXXFLAGS=-march=x86-64-v2|' makefile && \
   make && \
   install -v -m755 unrar /usr/bin && \
+  echo "**** test binary ****" && \
+  /usr/bin/unrar v /data.rar && \
+  /usr/bin/unrar t /data.rar && \
   echo "**** cleanup ****" && \
   apk del --purge \
     build-dependencies && \
@@ -34,6 +39,8 @@ FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy as ubuntu-buildstage
 
 # set version label
 ARG UNRAR_VERSION=7.0.7
+
+COPY data.rar /data.rar
 
 RUN \
   echo "**** install build dependencies ****" && \
@@ -54,6 +61,9 @@ RUN \
   sed -i 's|CXXFLAGS=-march=native|CXXFLAGS=-march=x86-64-v2|' makefile && \
   make && \
   install -v -m755 unrar /usr/bin && \
+  echo "**** test binary ****" && \
+  /usr/bin/unrar v /data.rar && \
+  /usr/bin/unrar t /data.rar && \
   echo "**** cleanup ****" && \
   apt-get remove -y \
     g++ \
