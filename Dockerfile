@@ -3,7 +3,7 @@
 FROM ghcr.io/linuxserver/baseimage-alpine:3.19 as alpine-buildstage
 
 # set version label
-ARG UNRAR_VERSION=7.0.7
+ARG UNRAR_VERSION=7.0.9
 
 COPY data.rar /data.rar
 
