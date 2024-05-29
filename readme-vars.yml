@@ -31,7 +31,7 @@ full_custom_readme: |
 
   # [linuxserver/unrar](https://github.com/linuxserver/docker-unrar)
 
-  [![Scarf.io pulls](https://scarf.sh/installs-badge/linuxserver-ci/linuxserver%2Funrar?color=94398d&label-color=555555&logo-color=ffffff&style=for-the-badge&package-type=docker)](https://scarf.sh/gateway/linuxserver-ci/docker/linuxserver%2Funrar)
+  [![Scarf.io pulls](https://scarf.sh/installs-badge/linuxserver-ci/linuxserver%2Funrar?color=94398d&label-color=555555&logo-color=ffffff&style=for-the-badge&package-type=docker)](https://scarf.sh)
   [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-unrar.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-unrar)
   [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-unrar.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-unrar/releases)
   [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-unrar/packages)
@@ -51,6 +51,7 @@ full_custom_readme: |
 
   ## Versions
 
+  * **29.05.24:** - Rebase builders to Alpine 3.20 and Ubuntu Noble.
   * **16.05.24:** - Bump to 7.0.9.
   * **29.02.24:** - Bump to 7.0.7.
   * **07.01.24:** - Bump to 6.2.12.
