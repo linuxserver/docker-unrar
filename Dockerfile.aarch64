@@ -36,7 +36,7 @@ RUN \
     /tmp/*
 
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-noble as ubuntu-buildstage
+FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-jammy as ubuntu-buildstage
 
 # set version label
 ARG UNRAR_VERSION=7.0.9

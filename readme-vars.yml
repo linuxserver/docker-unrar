@@ -51,7 +51,7 @@ full_custom_readme: |
 
   ## Versions
 
-  * **29.05.24:** - Rebase builders to Alpine 3.20 and Ubuntu Noble.
+  * **29.05.24:** - Rebase Alpine builder to 3.20.
   * **16.05.24:** - Bump to 7.0.9.
   * **29.02.24:** - Bump to 7.0.7.
   * **07.01.24:** - Bump to 6.2.12.
