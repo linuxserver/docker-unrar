@@ -1,9 +1,11 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.20 as alpine-buildstage
+ARG UNRAR_VERSION=7.1.6
+
+FROM ghcr.io/linuxserver/baseimage-alpine:3.21 as alpine-buildstage
 
 # set version label
-ARG UNRAR_VERSION=7.0.9
+ARG UNRAR_VERSION
 
 COPY data.rar /data.rar
 
@@ -38,7 +40,7 @@ RUN \
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy as ubuntu-buildstage
 
 # set version label
-ARG UNRAR_VERSION=7.0.9
+ARG UNRAR_VERSION
 
 COPY data.rar /data.rar
 
