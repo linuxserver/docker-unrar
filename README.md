@@ -48,6 +48,7 @@ The currently included binaries are as follows:
 
 ## Versions
 
+* **04.04.25:** - Rebase Alpine builder to 3.21, bump unrar to 7.1.6.
 * **29.05.24:** - Rebase Alpine builder to 3.20.
 * **16.05.24:** - Bump to 7.0.9.
 * **29.02.24:** - Bump to 7.0.7.
