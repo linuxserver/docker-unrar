@@ -7,6 +7,7 @@ custom_version_command: "echo 7.1.6"
 release_type: stable
 release_tag: latest
 ls_branch: main
+build_riscv64: true
 skip_package_check: true
 unraid_template_sync: false
 unraid_template: false
