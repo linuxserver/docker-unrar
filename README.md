@@ -48,6 +48,7 @@ The currently included binaries are as follows:
 
 ## Versions
 
+* **03.06.25:** - Rebase Alpine builder to 3.22.
 * **11.05.25:** - Add experimental RISCV build.
 * **04.04.25:** - Rebase Alpine builder to 3.21, bump unrar to 7.1.6.
 * **29.05.24:** - Rebase Alpine builder to 3.20.
