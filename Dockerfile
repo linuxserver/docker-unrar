@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
 
-ARG UNRAR_VERSION=7.1.6
+ARG UNRAR_VERSION=7.1.8
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.22 as alpine-buildstage
+FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS alpine-buildstage
 
 # set version label
 ARG UNRAR_VERSION
