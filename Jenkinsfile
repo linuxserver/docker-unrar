@@ -147,7 +147,7 @@ pipeline {
       steps{
         script{
           env.EXT_RELEASE = sh(
-            script: ''' echo 7.1.8 ''',
+            script: ''' echo 7.1.10 ''',
             returnStdout: true).trim()
             env.RELEASE_LINK = 'custom_command'
         }
@@ -820,7 +820,7 @@ pipeline {
                 -e WEB_AUTH=\"${CI_AUTH}\" \
                 -e WEB_PATH=\"${CI_WEBPATH}\" \
                 -e NODE_NAME=\"${NODE_NAME}\" \
-                -e SYFT_IMAGE_TAG=\"${CI_SYFT_IMAGE_TAG:${SYFT_IMAGE_TAG}}\" \
+                -e SYFT_IMAGE_TAG=\"${CI_SYFT_IMAGE_TAG:-${SYFT_IMAGE_TAG}}\" \
                 -t ghcr.io/linuxserver/ci:latest \
                 python3 test_build.py'''
         }
