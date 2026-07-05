@@ -3,11 +3,11 @@
 # jenkins variables
 project_name: docker-unrar
 external_type: na
-custom_version_command: "echo 7.2.4"
+custom_version_command: "echo 7.2.7"
 release_type: stable
 release_tag: latest
 ls_branch: main
-build_riscv64: true
+build_riscv64: false
 skip_package_check: true
 unraid_template_sync: false
 unraid_template: false
