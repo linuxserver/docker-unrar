@@ -3,7 +3,7 @@
 # jenkins variables
 project_name: docker-unrar
 external_type: na
-custom_version_command: "echo 7.2.7"
+custom_version_command: "echo 7.3.2"
 release_type: stable
 release_tag: latest
 ls_branch: main
